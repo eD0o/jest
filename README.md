@@ -1,22 +1,14 @@
-# Jest Course
+# 2 - Basics
 
-Technologies covered:
+## 2.0 - Why we need tests ?
 
-- Jest
-- TypeScript
-- Node.js
-- React
+Peace of mind as a dev/tester:
+- Catch bugs early.
+- Save time with debugging.
+- Unit tests impose high quality code, if an unit test is difficult to test, the code quality should be improved.
+- Prevent endless manual tests.
 
-Topics covered:
+### 2.0.1 - What are software tests ?
 
-- Basics of TypeScript unit testing with Jest
-- Integration tests with TypeScript
-- Test Driven Development (TDD) with Jest
-- Unit testing React with TypeScript and Jest
-- CICD with GitHub Actions and Docker
-- Jest - the basics: hooks, assertions, matchers
-- Jest - the advanced parts: aliases, custom matchers, snapshots
-- Advanced unit testing techniques using Jest
-- Database operations testing with Docker and Jest
-
-Course URL: https://www.udemy.com/course/unit-testing-typescript-nodejs/learn/lecture/36616598#overview
+- Code that runs other code and `makes assertions and checks`.`
+- Requirements and/or specifications that will be checked.
