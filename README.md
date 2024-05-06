@@ -23,7 +23,7 @@ Nowadays, it's the `most popular and supported` test framework.
 
 In a folder, run this command in the terminal:
 
-```js
+```npm
 npm i -D typescript jest ts-jest @types/jest ts-node
 ```
 
@@ -48,10 +48,9 @@ Also, to avoid this warn message:
 ts-jest[config] (WARN) message TS151001: If you have issues related to imports, you should consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https://blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for more information.
 ```
 
-`Create a simple tsconfig.json` file with just this property for now:
+`Create a simple tsconfig.json` file with just esModuleInterop for now:
 
-```jsonc
-// tsconfig.json
+```json
 {
   "compilerOptions": {
     "esModuleInterop": true
