@@ -16,7 +16,7 @@ Peace of mind as a dev/tester:
 ## 2.1 - What is Jest ?
 
 JavaScript/TypeScript `testing framework` developed by Facebook. Thus, a `test runner` with a sut of global functions: describe, test, expect and with a powerful set of matchers and assertions.
-![](https://i.imgur.com/vdT3AHz.png)
+
 Nowadays, it's the `most popular and supported` test framework.
 
 ## 2.2 - Jest/TypeScript project setup
@@ -48,7 +48,7 @@ ts-jest[config] (WARN) message TS151001: If you have issues related to imports, 
 
 `Create a simple tsconfig.json` file with just this property for now:
 
-```json
+```jsonc
 // tsconfig.json
 {
   "compilerOptions": {
