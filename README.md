@@ -10,7 +10,7 @@ Peace of mind as a dev/tester:
 
 ### 2.0.1 - What are software tests ?
 
-- Code that runs other code and `makes assertions and checks`.`
+- Code that runs other code and `makes assertions and checks`.
 - Requirements and/or specifications that will be checked.
 
 ## 2.1 - What is Jest ?
@@ -23,7 +23,9 @@ Nowadays, it's the `most popular and supported` test framework.
 
 In a folder, run this command in the terminal:
 
-```npm i -D typescript jest ts-jest @types/jest ts-node```
+```js
+npm i -D typescript jest ts-jest @types/jest ts-node
+```
 
 Then, initialize jest creating a file jest.config.ts:
 
