@@ -147,3 +147,81 @@ describe("Utils test suite", () => {
   });
 });
 ```
+
+## 2.4 - Jest assertions and matchers
+
+- Assertions: function to state that a value needs to be tested.
+- Matchers: defines the specific condition or criteria the value should meet.
+
+```ts
+expect(actual).toBe(expected); // expect() is the assertion, .toBe() is the matcher
+```
+
+`Matchers can check for equality, containment, truthiness, and more`, making the tests expressive and readable.
+
+Therefore, there are methods to compare and check: toBe (values), toEqual (primitive types), toHaveLength, toContain, etc.
+
+Some Jest matchers example:
+
+```ts
+// src/test/Utils.test.ts
+import { getStringInfo, toUppercase } from "../app/Utils"
+
+describe('Utils test suite', () => {
+
+  it('should return uppercase of valid string', () => {
+    const sut = toUppercase;
+    const expected = 'ABC'
+
+    const actual = sut('abc')
+
+    expect(actual).toBe(expected)
+  })
+
+  it.only('should return info for valid string', () => {
+    const actual = getStringInfo('My-String')
+
+    expect(actual.lowerCase).toBe('my-string');
+    expect(actual.extraInfo).toEqual({});
+
+    expect(actual.characters.length).toBe(9);
+    expect(actual.characters).toHaveLength(9);
+
+    expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g']);
+    expect(actual.characters).toContain<string>('M'); // assure that will check the type
+    expect(actual.characters).toEqual(
+      expect.arrayContaining(['S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'])
+    )
+
+    // check for var/object definition
+    expect(actual.extraInfo).not.toBe(undefined);
+    expect(actual.extraInfo).not.toBeUndefined();
+    expect(actual.extraInfo).toBeDefined();
+    expect(actual.extraInfo).toBeTruthy();
+  })
+})
+```
+
+## 2.X - Observations
+
+- use .only will help to isolate the test.
+
+```ts
+// src/test/Utils.test.ts
+import { getStringInfo, toUppercase } from "../app/Utils";
+
+describe("Utils test suite", () => {
+  it("should return uppercase of valid string", () => {
+    ...
+  });
+
+
+  // just this one will run
+  it.only("should return info for valid string", () => {
+    const actual = getStringInfo("My-String");
+
+    expect(actual.lowerCase).toBe("my-string");
+    expect(actual.extraInfo).toBe({});
+  });
+});
+```
