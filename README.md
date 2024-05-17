@@ -202,6 +202,10 @@ describe('Utils test suite', () => {
 })
 ```
 
+## 2.5 - Multiple Tests Structure
+
+
+
 ## 2.X - Observations
 
 - use .only will help to isolate the test.
