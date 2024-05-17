@@ -11,25 +11,35 @@ describe('Utils test suite', () => {
     expect(actual).toBe(expected)
   })
 
-  it.only('should return info for valid string', () => {
-    const actual = getStringInfo('My-String')
+  describe('getStringInfo for arg My-String should', () => {
 
-    expect(actual.lowerCase).toBe('my-string');
-    expect(actual.extraInfo).toEqual({});
-
-    expect(actual.characters.length).toBe(9);
-    expect(actual.characters).toHaveLength(9);
-
-    expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g']);
-    expect(actual.characters).toContain<string>('M'); // making sure that will look for a 'm' string
-    expect(actual.characters).toEqual(
-      expect.arrayContaining(['S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'])
-    )
-
-    // check for var/object definition
-    expect(actual.extraInfo).not.toBe(undefined);
-    expect(actual.extraInfo).not.toBeUndefined();
-    expect(actual.extraInfo).toBeDefined();
-    expect(actual.extraInfo).toBeTruthy();
+    test('return right length', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.characters).toHaveLength(9);
+    })
+    test('return right lower case', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.lowerCase).toBe('my-string');
+    })
+    test('return right upper case', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.upperCase).toBe('MY-STRING');
+    })
+    test('return right characters', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g']);
+      expect(actual.characters).toContain<string>('M'); // making sure that will look for a 'm' string
+      expect(actual.characters).toEqual(
+        expect.arrayContaining(['S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'])
+      )
+    })
+    test('return defined extra info', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.extraInfo).toBeDefined();
+    })
+    test('return right extra info', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.extraInfo).toEqual({})
+    })
   })
 })

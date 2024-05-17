@@ -204,7 +204,61 @@ describe('Utils test suite', () => {
 
 ## 2.5 - Multiple Tests Structure
 
+- To `avoid difficulty to debug` and spot where a possible error is, besides to better organize it, it's `recommended to create multiple tests and put them in a separate suite`.
 
+- Each test should be independent from other tests, so `avoid using the same variable 'actual'` for other tests.
+
+```ts
+import { getStringInfo, toUppercase } from "../app/Utils"
+
+describe('Utils test suite', () => {
+
+  it('should return uppercase of valid string', () => {
+    const sut = toUppercase;
+    const expected = 'ABC'
+
+    const actual = sut('abc')
+
+    expect(actual).toBe(expected)
+  })
+
+  describe('getStringInfo for arg My-String should', () => {
+
+    test('return right length', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.characters).toHaveLength(9);
+    })
+    test('return right lower case', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.lowerCase).toBe('my-string');
+    })
+    test('return right upper case', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.upperCase).toBe('MY-STRING');
+    })
+    test('return right characters', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g']);
+      expect(actual.characters).toContain<string>('M');
+      expect(actual.characters).toEqual(
+        expect.arrayContaining(['S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'])
+      )
+    })
+    test('return defined extra info', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.extraInfo).toBeDefined();
+    })
+    test('return right extra info', () => {
+      const actual = getStringInfo('My-String');
+      expect(actual.extraInfo).toEqual({})
+    })
+  })
+})
+```
+
+Output:
+
+![](https://i.imgur.com/bIr9luN.png)
 
 ## 2.X - Observations
 
