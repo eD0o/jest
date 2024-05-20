@@ -165,41 +165,50 @@ Some Jest matchers example:
 
 ```ts
 // src/test/Utils.test.ts
-import { getStringInfo, toUppercase } from "../app/Utils"
+import { getStringInfo, toUppercase } from "../app/Utils";
 
-describe('Utils test suite', () => {
-
-  it('should return uppercase of valid string', () => {
+describe("Utils test suite", () => {
+  it("should return uppercase of valid string", () => {
     const sut = toUppercase;
-    const expected = 'ABC'
+    const expected = "ABC";
 
-    const actual = sut('abc')
+    const actual = sut("abc");
 
-    expect(actual).toBe(expected)
-  })
+    expect(actual).toBe(expected);
+  });
 
-  it.only('should return info for valid string', () => {
-    const actual = getStringInfo('My-String')
+  it.only("should return info for valid string", () => {
+    const actual = getStringInfo("My-String");
 
-    expect(actual.lowerCase).toBe('my-string');
+    expect(actual.lowerCase).toBe("my-string");
     expect(actual.extraInfo).toEqual({});
 
     expect(actual.characters.length).toBe(9);
     expect(actual.characters).toHaveLength(9);
 
-    expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g']);
-    expect(actual.characters).toContain<string>('M'); // assure that will check the type
+    expect(actual.characters).toEqual([
+      "M",
+      "y",
+      "-",
+      "S",
+      "t",
+      "r",
+      "i",
+      "n",
+      "g",
+    ]);
+    expect(actual.characters).toContain<string>("M"); // assure that will check the type
     expect(actual.characters).toEqual(
-      expect.arrayContaining(['S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'])
-    )
+      expect.arrayContaining(["S", "t", "r", "i", "n", "g", "M", "y", "-"])
+    );
 
     // check for var/object definition
     expect(actual.extraInfo).not.toBe(undefined);
     expect(actual.extraInfo).not.toBeUndefined();
     expect(actual.extraInfo).toBeDefined();
     expect(actual.extraInfo).toBeTruthy();
-  })
-})
+  });
+});
 ```
 
 ## 2.5 - Multiple Tests Structure
@@ -209,56 +218,87 @@ describe('Utils test suite', () => {
 - Each test should be independent from other tests, so `avoid using the same variable 'actual'` for other tests.
 
 ```ts
-import { getStringInfo, toUppercase } from "../app/Utils"
+import { getStringInfo, toUppercase } from "../app/Utils";
 
-describe('Utils test suite', () => {
-
-  it('should return uppercase of valid string', () => {
+describe("Utils test suite", () => {
+  it("should return uppercase of valid string", () => {
     const sut = toUppercase;
-    const expected = 'ABC'
+    const expected = "ABC";
 
-    const actual = sut('abc')
+    const actual = sut("abc");
 
-    expect(actual).toBe(expected)
-  })
+    expect(actual).toBe(expected);
+  });
 
-  describe('getStringInfo for arg My-String should', () => {
-
-    test('return right length', () => {
-      const actual = getStringInfo('My-String');
+  describe("getStringInfo for arg My-String should", () => {
+    test("return right length", () => {
+      const actual = getStringInfo("My-String");
       expect(actual.characters).toHaveLength(9);
-    })
-    test('return right lower case', () => {
-      const actual = getStringInfo('My-String');
-      expect(actual.lowerCase).toBe('my-string');
-    })
-    test('return right upper case', () => {
-      const actual = getStringInfo('My-String');
-      expect(actual.upperCase).toBe('MY-STRING');
-    })
-    test('return right characters', () => {
-      const actual = getStringInfo('My-String');
-      expect(actual.characters).toEqual(['M', 'y', '-', 'S', 't', 'r', 'i', 'n', 'g']);
-      expect(actual.characters).toContain<string>('M');
+    });
+    test("return right lower case", () => {
+      const actual = getStringInfo("My-String");
+      expect(actual.lowerCase).toBe("my-string");
+    });
+    test("return right upper case", () => {
+      const actual = getStringInfo("My-String");
+      expect(actual.upperCase).toBe("MY-STRING");
+    });
+    test("return right characters", () => {
+      const actual = getStringInfo("My-String");
+      expect(actual.characters).toEqual([
+        "M",
+        "y",
+        "-",
+        "S",
+        "t",
+        "r",
+        "i",
+        "n",
+        "g",
+      ]);
+      expect(actual.characters).toContain<string>("M");
       expect(actual.characters).toEqual(
-        expect.arrayContaining(['S', 't', 'r', 'i', 'n', 'g', 'M', 'y', '-'])
-      )
-    })
-    test('return defined extra info', () => {
-      const actual = getStringInfo('My-String');
+        expect.arrayContaining(["S", "t", "r", "i", "n", "g", "M", "y", "-"])
+      );
+    });
+    test("return defined extra info", () => {
+      const actual = getStringInfo("My-String");
       expect(actual.extraInfo).toBeDefined();
-    })
-    test('return right extra info', () => {
-      const actual = getStringInfo('My-String');
-      expect(actual.extraInfo).toEqual({})
-    })
-  })
-})
+    });
+    test("return right extra info", () => {
+      const actual = getStringInfo("My-String");
+      expect(actual.extraInfo).toEqual({});
+    });
+  });
+});
 ```
 
 Output:
 
 ![](https://i.imgur.com/bIr9luN.png)
+
+## 2.6 - Parametrized Tests
+
+Used in scenarios that a method is more complex and is necessary to test for multiple cases.
+
+```ts
+describe("toUpperCase examples", () => {
+  // the funcion each will help to group the parameters
+  it.each([
+    { input: "abc", expected: "ABC" },
+    { input: "My-String", expected: "MY-STRING" },
+    { input: "def", expected: "DEF" },
+    //it's possible to print the parameters in the console as well
+  ])("$input toUpperCase should be $expected", ({ input, expected }) => {
+    const actual = toUppercase(input);
+    expect(actual).toBe(expected);
+  });
+});
+```
+
+Output:
+
+![](https://i.imgur.com/AmqfJT3.png)
 
 ## 2.X - Observations
 
