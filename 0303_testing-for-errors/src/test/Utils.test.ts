@@ -6,21 +6,24 @@ describe('Utils test suite', () => {
 
     let sut: StringUtils
 
-    // when testing classes, this way it's assured that tests are independente from one another
     beforeEach(() => {
       sut = new StringUtils()
-      console.log('Setup');
     })
 
-    // clearing mocks
-    afterEach(() => {
-      console.log('Teardown');
+    it('Should throw error on invalid argument - function', () => {
+
+      function expectError() {
+        const actual = sut.toUppercase('')
+
+      }
+      expect(expectError).toThrow();
+      expect(expectError).toThrowError('Invalid argument'); //deprecated
     })
 
-    it('Should return correct upperCase', () => {
-      const actual = sut.toUppercase('abc')
-      expect(actual).toBe('ABC')
-      console.log('Actual test');
+    it('Should throw error on invalid argument - arrow function', () => {
+      expect(() => {
+        sut.toUppercase('')
+      }).toThrow();
     })
   })
 })

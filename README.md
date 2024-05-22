@@ -19,38 +19,69 @@ The F.I.R.S.T principles are guidelines recommended to follow when writing softw
 
 ## 3.2 - Jest Hooks
 
-Jest have some hooks that are used inside describe blocks. It'll be better explained in the future classes. 
+Jest have some hooks that are used inside describe blocks. It'll be better explained in the future classes.
 
 Some examples are: beforeEach, afterEach, beforeAll, afterAll, etc.
 
 ```ts
-import { StringUtils } from "../app/Utils"
+import { StringUtils } from "../app/Utils";
 
-describe('Utils test suite', () => {
-
-  describe('StringUtils tests', () => {
-
-    let sut: StringUtils
+describe("Utils test suite", () => {
+  describe("StringUtils tests", () => {
+    let sut: StringUtils;
 
     // when testing classes, this way it's assured that tests are independente from one another
     beforeEach(() => {
-      sut = new StringUtils()
-      console.log('Setup');
-    })
+      sut = new StringUtils();
+      console.log("Setup");
+    });
 
     // clearing mocks
     afterEach(() => {
-      console.log('Teardown');
-    })
+      console.log("Teardown");
+    });
 
-    it('Should return correct upperCase', () => {
-      const actual = sut.toUppercase('abc')
-      expect(actual).toBe('ABC')
-      console.log('Actual test');
-    })
-  })
-})
+    it("Should return correct upperCase", () => {
+      const actual = sut.toUppercase("abc");
+      expect(actual).toBe("ABC");
+      console.log("Actual test");
+    });
+  });
+});
 ```
 
 ## 3.3 - Testing for Errors
 
+When testing to simulate errors, there are two methods to see it:
+
+```ts
+import { StringUtils } from "../app/Utils";
+
+describe("Utils test suite", () => {
+  describe("StringUtils tests", () => {
+    let sut: StringUtils;
+
+    beforeEach(() => {
+      sut = new StringUtils();
+    });
+
+    it("Should throw error on invalid argument - function", () => {
+      function expectError() {
+        const actual = sut.toUppercase("");
+      }
+      expect(expectError).toThrow();
+      expect(expectError).toThrowError("Invalid argument"); //deprecated
+    });
+
+    it("Should throw error on invalid argument - arrow function", () => {
+      expect(() => {
+        sut.toUppercase("");
+      }).toThrow();
+    });
+  });
+});
+```
+
+Output:
+
+![](https://i.imgur.com/714L9uQ.png)
