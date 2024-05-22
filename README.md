@@ -19,7 +19,7 @@ The F.I.R.S.T principles are guidelines recommended to follow when writing softw
 
 ## 3.2 - Jest Hooks
 
-Jest have some hooks that are used inside describe blocks. It'll be better explained in the future classes.
+Jest have some hooks that are used inside describe blocks. It'll be better explained in the next sections.
 
 Some examples are: beforeEach, afterEach, beforeAll, afterAll, etc.
 
@@ -87,3 +87,31 @@ Output:
 ![](https://i.imgur.com/714L9uQ.png)
 
 ## 3.4 - Jest aliases and watch mode
+
+Properties
+
+- .only: Runs `only the specified test(s)`, ignoring others.
+- .skip: `Skips the specified test(s)`, preventing them from running.
+- .concurrent: Experimental feature for `running tests simultaneously` (see more here: https://jestjs.io/docs/api#testconcurrentname-fn-timeout).
+- .todo: `Creates a placeholder/skeleton` for a test that you plan to write later (will be better explained in the TDD section).
+
+Aliases
+
+- it/test - Both with same purpose to `declare an unit test`.
+- fit - Focuses on an individual test, `equivalent to it.only`.
+- xit - Skips the test, `equivalent to it.skip`.
+
+> fit and xit are typically used for temporarily isolating tests during development.
+
+Watch mode (--watch):
+
+It's a `suffix in the scripts configuration of package.json`. It makes Jest `rerun tests whenever code changes and is saved`.
+
+```json
+  "scripts": {
+    "test": "jest --watch"
+  }
+```
+
+It's particularly useful for Test-Driven Development (TDD) as it provides immediate feedback on code changes.
+
