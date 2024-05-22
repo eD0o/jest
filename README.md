@@ -51,3 +51,6 @@ describe('Utils test suite', () => {
   })
 })
 ```
+
+## 3.3 - Testing for Errors
+
