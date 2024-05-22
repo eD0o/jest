@@ -1,12 +1,26 @@
-import { toUppercase } from "../app/Utils"
+import { StringUtils } from "../app/Utils"
 
-describe('toUpperCase examples', () => {
-  it.each([
-    { input: 'abc', expected: 'ABC' },
-    { input: 'My-String', expected: 'MY-STRING' },
-    { input: 'def', expected: 'DEF' },
-  ])('$input toUpperCase should be $expected', ({ input, expected }) => {
-    const actual = toUppercase(input);
-    expect(actual).toBe(expected);
+describe('Utils test suite', () => {
+
+  describe('StringUtils tests', () => {
+
+    let sut: StringUtils
+
+    // when testing classes, this way it's assured that tests are independente from one another
+    beforeEach(() => {
+      sut = new StringUtils()
+      console.log('Setup');
+    })
+
+    // clearing mocks
+    afterEach(() => {
+      console.log('Teardown');
+    })
+
+    it('Should return correct upperCase', () => {
+      const actual = sut.toUppercase('abc')
+      expect(actual).toBe('ABC')
+      console.log('Actual test');
+    })
   })
 })
