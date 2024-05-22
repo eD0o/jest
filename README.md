@@ -50,7 +50,7 @@ describe("Utils test suite", () => {
 });
 ```
 
-## 3.3 - Testing for Errors
+## 3.3 - Testing for errors
 
 When testing to simulate errors, there are two methods to see it:
 
@@ -85,3 +85,5 @@ describe("Utils test suite", () => {
 Output:
 
 ![](https://i.imgur.com/714L9uQ.png)
+
+## 3.4 - Jest aliases and watch mode
