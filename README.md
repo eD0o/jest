@@ -133,16 +133,12 @@ Then, in the `section of Run and Debug`, create a new file and paste it:
       "request": "launch",
       "name": "Jest Current File",
       "program": "${workspaceFolder}/node_modules/.bin/jest",
-      "args": [
-        "${fileBasenameNoExtension}",
-        "--config",
-        "jest.config.js"
-      ],
+      "args": ["${fileBasenameNoExtension}", "--config", "jest.config.js"],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen",
       "disableOptimisticBPs": true,
       "windows": {
-        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
       }
     }
   ]
@@ -154,3 +150,31 @@ And now just mark the breakpoint in the line code and click in Start Debugging i
 > testEnviroment needs to be settled as 'node' in jest.config.ts
 
 ## 3.6 - Coverage
+
+```ts
+// jest.config.ts
+import type { Config } from "@jest/types";
+
+const config: Config.InitialOptions = {
+  preset: "ts-jest",
+  testEnvironment: "node",
+  verbose: true,
+  collectCoverage: true,
+  collectCoverageFrom: ["<rootDir>/src/app/**/*.ts"],
+};
+
+export default config;
+```
+
+- collectCoverage: This setting enables Jest to collect code coverage information, which means Jest will `analyze which parts of your code are being tested` and which are not.
+- collectCoverageFrom: Specifies the files for which coverage information should be collected. Here, it includes all TypeScript files (.ts) in the src/app directory and its subdirectories
+
+> Collecting coverage doesn't work so well with the --watch mode due to the overhead it introduces. Consider running coverage in a separate command for more reliable results.
+
+Coverage Folder Contents
+
+- HTML Report: Provides a `detailed breakdown` of which lines of code were executed during tests. You `can open this report in a web browser`.
+- Coverage Summary: A `summary of the statistics`, including statements, branches, functions and lines.
+- Raw Coverage Data: files that Jest uses to generate the coverage report.
+
+Sometimes trivial or hard to test code can be excluded from coverage. This can be achieved with /* istanbul ignore next */.
