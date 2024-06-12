@@ -115,3 +115,42 @@ It's a `suffix in the scripts configuration of package.json`. It makes Jest `rer
 
 It's particularly useful for Test-Driven Development (TDD) as it provides immediate feedback on code changes.
 
+## 3.5 - VSCode debug configuration
+
+To `configure a file to debug jest tests`, we'll use some part of this code: https://github.com/Microsoft/vscode-recipes/tree/master/debugging-jest-tests
+
+Then, in the `section of Run and Debug`, create a new file and paste it:
+
+![](https://i.imgur.com/Ej6jL7H.png)
+
+```jsonc
+// launch.json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest Current File",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": [
+        "${fileBasenameNoExtension}",
+        "--config",
+        "jest.config.js"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "windows": {
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest",
+      }
+    }
+  ]
+}
+```
+
+And now just mark the breakpoint in the line code and click in Start Debugging in Jest Current File.
+
+> testEnviroment needs to be settled as 'node' in jest.config.ts
+
+## 3.6 - Coverage
