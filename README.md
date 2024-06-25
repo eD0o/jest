@@ -91,3 +91,5 @@ Password Checker will be the "kata project" of this chapter.
 - Iteration 2: returns the reasons of invalidity.
 
 - Iteration 3: admin password should contain a number.
+
+### 4.3 - PassChecker setup
