@@ -120,3 +120,5 @@ Folders Structure:
 ![](https://i.imgur.com/qO7wbg0.png)
 
 ## 4.4 - Iterations
+
+See the files and folders to understand the iterations.
