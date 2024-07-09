@@ -1,7 +1,7 @@
 import type { Config } from '@jest/types'
 
-const baseDir = '<rootDir>/src/app/pass_checker' // source code
-const baseTestDir = '<rootDir>/src/test/pass_checker' // test code
+const baseDir = '<rootDir>/src/app/doubles'
+const baseTestDir = '<rootDir>/src/test/doubles'
 
 const config: Config.InitialOptions = {
   preset: 'ts-jest',
@@ -12,7 +12,7 @@ const config: Config.InitialOptions = {
     `${baseDir}/**/*.ts`
   ],
   testMatch: [
-    `${baseTestDir}/**/*.ts` // Define the pattern to find the tests file
+    `${baseTestDir}/**/*.ts`
   ],
 }
 

@@ -14,3 +14,5 @@ What are test doubles?
 - Mocking testing styles: London (behavior-driven) / Chicago (state-driven).
 
 > If used too much, there is something wrong with our code, possibly indicating high coupling or low cohesion.
+
+Create commented examples of each one later. 
