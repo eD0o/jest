@@ -16,3 +16,9 @@ What are test doubles?
 > If used too much, there is something wrong with our code, possibly indicating high coupling or low cohesion.
 
 Create commented examples of each one later. 
+
+Spies vs Mocks:
+
+- Spies are not directly injected into SUT.
+- Original functionality is preserved with spies.
+- Spies usually track method calls.
